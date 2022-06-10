@@ -49,4 +49,17 @@ Insert Data
     - delete()  //  Data delete
 
     - PUT = complete update
-    - PATCH = partial update    //      some kind of data update 
+    - PATCH = partial update    //      some kind of data update
+
+#   Generic Api View
+    - GenericApiView - 
+
+    - ListModelMixin - 
+
+    - list(), create(), retrieve(), update(), destroy()
+    - get,      post,   get,        put,        delete,
+
+#   Concrete Generic View
+    - ListCreateAPIView, RetrieveUpdateDestroyAPIView
+        - two useful methods
+    - sortest code and create CRUD operation

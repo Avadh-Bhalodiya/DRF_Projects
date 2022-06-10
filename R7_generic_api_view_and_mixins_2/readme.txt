@@ -1,0 +1,1 @@
+ModelMixin is Merge and compressed method
