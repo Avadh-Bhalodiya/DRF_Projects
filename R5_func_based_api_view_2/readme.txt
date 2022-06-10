@@ -1,0 +1,1 @@
+function Based api view but using browser api (like Django Rest api page)
