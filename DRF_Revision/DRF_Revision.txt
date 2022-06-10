@@ -63,3 +63,17 @@ Insert Data
     - ListCreateAPIView, RetrieveUpdateDestroyAPIView
         - two useful methods
     - sortest code and create CRUD operation
+
+#   ViewSet
+    - create, update, delete, retrieve, list(show) these methods perform
+    - DefualtRouter concept
+    - router.register()
+    - route the root of our views functions without passign urls automatic understanding path without url using Router or ViewSet.
+
+- queryset - store multiple data / store set of data
+
+# ModelViewSet
+    - create, update, delete, retrieve, list(show) these methods perform with sortest method
+
+# ReadOnlyModelViewSet
+    - only list(show), retrive two methods perform
