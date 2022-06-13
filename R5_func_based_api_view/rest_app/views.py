@@ -1,7 +1,5 @@
-from functools import partial
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from yaml import serialize
 from .models import Student
 from .serializers import StudentSerialiazer
 

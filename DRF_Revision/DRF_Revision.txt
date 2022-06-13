@@ -1,14 +1,14 @@
 # Serialization 
 
-    - Complex Datatype -> Python Native Datatype -> Json data
-    - get info. from database ->  convert in Python type -> then   last convert Json data
-    - model -> Serialization -> Json
+	- Complex Datatype -> Python Native Datatype -> Json data
+	- get info. from database ->  convert in Python type -> then   last convert Json data
+	- model -> Serialization -> Json
 
 # DeSerialization 
 
-    - Json data -> Python Native Datatype -> Complex Datatype
-    - get Json data  ->  convert in Python type -> post data in    database
-    - Json -> DeSerialization -> model
+	- Json data -> Python Native Datatype -> Complex Datatype
+	- get Json data  ->  convert in Python type -> post data in    database
+	- Json -> DeSerialization -> model
 
 - jsond data -> stream using io.BytesIO -> python_data using
 - JSONParser -> python_data convert Complex_data using serialization
@@ -17,63 +17,123 @@ Insert Data
 
 # Validation
 
-    priority Level:-
-    1. Validators
-    2. Field Level Validation
-    3. Object Level Validation
+	priority Level:-
+	1. Validators
+	2. Field Level Validation
+	3. Object Level Validation
 
 # Model_Serializer
 
-    - 1. name = serializers.CharField(read_only = True)
-    - 2. read_only_field = ['name', 'roll']    // both mean are same
-    - 3. extra_kwargs = {'name':{'read_only':True}}
-    - this field only read not midified
+	- 1. name = serializers.CharField(read_only = True)
+	- 2. read_only_field = ['name', 'roll']    // both mean are same
+	- 3. extra_kwargs = {'name':{'read_only':True}}
+	- this field only read not midified
 
-    - Add Validation (Normally add)
-     - check serializer.py (R4.../Validation)
+	- Add Validation (Normally add)
+	 - check serializer.py (R4.../Validation)
 
 # Function Based Api View
-    - @api_view(['GET', 'POST', 'PUT', 'DELETE'])   //  multiple choice methods write, any function any method write just function above this line.
+	- @api_view(['GET', 'POST', 'PUT', 'DELETE'])   //  multiple choice methods write, any function any method write just function above this line.
 
-    - Response(serializer.data)     //  Response data convert json and send client side automatic
+	- Response(serializer.data)     //  Response data convert json and send client side automatic
 
-    - Student.objects.get(id=id)    // id = 1 check in Student model and compare id is in database? yes then continue
+	- Student.objects.get(id=id)    // id = 1 check in Student model and compare id is in database? yes then continue
 
-    - serializer = StudentSerialiazer(stu, many=True)   //  Miltiple data get form of queryset that's why many=True write
+	- serializer = StudentSerialiazer(stu, many=True)   //  Miltiple data get form of queryset that's why many=True write
 
-    - request.data      //      returns the parsed content of the request body
-                        //      request.data # Handles arbitrary data. Works for 'POST', 'PUT' and 'PATCH' methods.
-                        //      parsed content means get all data json form
+	- request.data      //      returns the parsed content of the request body
+						//      request.data # Handles arbitrary data. Works for 'POST', 'PUT' and 'PATCH' methods.
+						//      parsed content means get all data json form
 
-    - save()    //  Data save
-    - delete()  //  Data delete
+	- save()    //  Data save
+	- delete()  //  Data delete
 
-    - PUT = complete update
-    - PATCH = partial update    //      some kind of data update
+	- PUT = complete update
+	- PATCH = partial update    //      some kind of data update
 
 #   Generic Api View
-    - GenericApiView - 
+	- GenericApiView - 
 
-    - ListModelMixin - 
+	- ListModelMixin - 
 
-    - list(), create(), retrieve(), update(), destroy()
-    - get,      post,   get,        put,        delete,
+	- list(), create(), retrieve(), update(), destroy()
+	- get,      post,   get,        put,        delete,
 
 #   Concrete Generic View
-    - ListCreateAPIView, RetrieveUpdateDestroyAPIView
-        - two useful methods
-    - sortest code and create CRUD operation
+	- ListCreateAPIView, RetrieveUpdateDestroyAPIView
+		- two useful methods
+	- sortest code and create CRUD operation
 
 #   ViewSet
-    - create, update, delete, retrieve, list(show) these methods perform
-    - DefualtRouter concept
-    - router.register()
-    - route the root of our views functions without passign urls automatic understanding path without url using Router or ViewSet.
+	- create, update, delete, retrieve, list(show) these methods perform
+	- DefualtRouter concept
+	- router.register()
+	- route the root of our views functions without passign urls automatic understanding path without url using Router or ViewSet.
 
 - queryset - store multiple data / store set of data
 
 # ModelViewSet
-    - create, update, delete, retrieve, list(show) these methods perform with sortest method
+  - create, update, delete, retrieve, list(show) these methods perform with sortest method
 
 # ReadOnlyModelViewSet
-    - only list(show), retrive two methods perform
+  - only list(show), retrive two methods perform
+
+# Authentication & Permission
+- Permission Class : -
+  - AllowAny
+	 - any user perform crud operations.
+
+  - IsAuthenticated
+		- authenticated user perform crud operations.
+
+  - IsAdminUser
+		- staff status is active that user only crud opretions.
+
+  - IsAuthenticatedOrReadOnly
+		- authenticated user perform crud operations but not authenticated user is 
+		only accessiable safe methods.
+
+  - DjangoModelPermissions
+		- unauthenticated user nothing anything provide
+		- authenticated user by default only read permissions
+		- crud operations perform then permission allow in django admin panale
+		- Powerful class any permission set in through this class via django admin panale
+
+  - DjangoModelPermissionsOrAnonReadOnly
+		- unauthenticated user by default only read permissions 
+		- crud operations perform then permission allow in django admin panale
+		- Powerful class any permission set in through this class via django admin panale
+
+  - DjangoObjectPermissions
+		-
+
+  - Custom Permissions
+		- own permission class
+		- Third party Permission packages
+			- DRF - Access Policy
+			- Composed Permission
+			- REST Condition
+			- DRY Rest permissions
+			- Django Rest Framework Roles
+			- Django REST Framework API Key
+			- Dajngo Rest Framework Role Filters
+			- Django Rest Framework PSQ
+
+
+	Globly Define: - REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework.authentication.BasicAuthentication'],
+    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated'],
+		}
+	
+	Locally Define: - authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]    // Locally Declare
+
+- Basic Authentication
+	- 
+
+- Session Authentication
+	- unsafe methods :- 
+		- PUT, PATCH, POST, DELETE
+
+	- safe methods :-
+		- GET, HEAD, OPTIONS 
