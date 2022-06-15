@@ -136,4 +136,58 @@ Insert Data
 		- PUT, PATCH, POST, DELETE
 
 	- safe methods :-
-		- GET, HEAD, OPTIONS 
+		- GET, HEAD, OPTIONS
+
+- Generate Token methods
+	- Using Admin Application
+	- Using Django manage.py drf_create_token <username> 		// through command
+	- By exposing an Api endpoint 		//	user request with username and password
+	- Using Signals		//	user created then quick create token
+
+
+
+- Token Authentication
+	- settings.py in import: 'rest_framework.authtoken'
+	- urls.py in add this url: path('gettoken/', obtain_auth_token)
+	- urls.py in import: from rest_framework.authtoken.views import obtain_auth_token
+
+- Custom Token Authentication
+	- just change about terminal in show not only token number any other details to show in terminal (check auth.py)
+
+- CRUD operations through terminal using token Key
+	- GET
+		- http http://127.0.0.1:8000/studentapi/ 'Authorization:Token 917eca2a7f35d58cf2c75e09998a0b66dcadeace'
+
+	- POST	
+		- http -f POST http://127.0.0.1:8000/studentapi/ name=Jay roll=103 city=surat 'Authorization:Token 917eca2a7f35d58cf2c75e09998a0b66dcadeace'
+
+	- PUT
+		- http PUT http://127.0.0.1:8000/studentapi/2/ name=raju roll=104 city=dwarka 'Authorization:Token 917eca2a7f35d58cf2c75e09998a0b66dcadeace'
+
+	- DELETE
+		- http DELETE http://127.0.0.1:8000/studentapi/2/ 'Authorization:Token 917eca2a7f35d58cf2c75e09998a0b66dcadeace'
+
+- Access authenticated through urls (R17)
+
+- JWT(JSON Web Token)
+	- Token is generated but not store in database (This is 3rd Party Token Authentication packages)
+
+	- opp. Token is generated and store in database (This is in Built in Token Authentication packages)
+
+	- ACCESS_TOKEN_LIFETIME - by default   5 minutes
+	- REFRESH_TOKEN_LIFETIME - by default  1 day / 24 hour
+	
+	- http http://127.0.0.1:8000/studentapi/ 'Authorization:Bearer token_number' // Get Data
+
+	- http -f POST http://127.0.0.1:8000/studentapi/ name=Prince roll=104 city=Gandhinagar 'Authorization:Bearer token_number'	// Insert Data
+
+	- http PUT http://127.0.0.1:8000/studentapi/3/ name=Paras roll=114 city=jamnagar 'Authorization:Bearer token_number'		// Update Data
+
+	- http DELETE http://127.0.0.1:8000/studentapi/3/ name=Paras roll=114 city=jamnagar 'Authorization:Bearer token_number'
+
+- JWT how to declare in globle?
+	- SIMPLE_JWT = {
+		'ACCESS_TOKEN_LIFETIME':timedelta(minutes=5), 		// default value is 5
+		'ROTATE_REFRESH_TOKENS':True		//	value is false then show only access token in terminal 
+																		but value is True then show access & refresh Token in Terminal
+	}
